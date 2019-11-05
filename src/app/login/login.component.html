@@ -1,5 +1,5 @@
-<h1>Login</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit">
-    <input type="text" formControlName="username"/>
-    <input type="text" formControlName="password"/>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <input type="text" name="username" ngModel>
+    <input type="password" name="password" ngModel>
+    <button type="submit">Submit</button>
 </form>
