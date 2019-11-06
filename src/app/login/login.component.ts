@@ -16,8 +16,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form : NgForm) {
-    this.sessionService.connect("noe.barbosa@gmail.com", "password");
-    console.log("done");
-    //this.sessionService.connect(form.controls['username'].value, form.controls['password'].value);
+    this.sessionService.disconnect();
+    this.sessionService.connect("thomas@gmail.com", "password").then(() => {
+        //console.log(this.sessionService.getUsername());
+        //console.log(this.sessionService.getEmail());
+        console.log("Connecté");
+
+        this.sessionService.preconnect().then(() => {
+          console.log("preconnexion");
+        }).catch(() => {
+          console.log("echec preconnexion");
+        });
+    }).catch(() => {
+        console.log("Pas de connexion");
+    });
   }
 }

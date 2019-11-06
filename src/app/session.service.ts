@@ -13,32 +13,35 @@ export class SessionService {
   }
 
   preconnect() {
-    let token = localStorage.getItem('token');
-    if(token !== null) {
-      const url = "http://34.77.176.92/users/preconnect";
-      const header = new HttpHeaders();
-      header.set('Authorization', "Bearer " + token);
-      header.set
-      this.httpClient.post(url, null, {headers: header}).subscribe(
-        (response) => {
-          if(response['auth'] === true) {
-            console.log("Successfully preconnected");
-            let username = response['user']['name'];
-            let email = response['user']['email'];
-            localStorage.setItem('username', username);
-            localStorage.setItem('email', email);
-          } else {
-            console.log("Failed to preconnect (non existent token");
-            localStorage.removeItem('token');
+    return new Promise((resolve, reject) => {
+      let token = localStorage.getItem('token');
+      if(token !== null) {
+        const url = "http://34.77.176.92/users/preconnect";
+        const header = new HttpHeaders();
+        header.set('Authorization', "Bearer " + token);
+        this.httpClient.post(url, null, {headers: header}).subscribe(
+          (response) => {
+            if(response['auth'] === true) {
+              let username = response['user']['name'];
+              let email = response['user']['email'];
+              localStorage.setItem('username', username);
+              localStorage.setItem('email', email);
+              console.log("Successfully preconnected");
+              resolve();
+            } else {
+              localStorage.removeItem('token');
+              reject("Failed to preconnect (non existent token");
+            }
+          },
+          (error) => {
+            console.log("Failed to preconnect (bad request)");
+            reject();
           }
-        },
-        (error) => {
-          console.log("Failed to preconnect (bad request)");
-        }
-      );
-    } else {
-      console.log("No token in localstorage");
-    }
+        );
+      } else {
+        reject("No token in localstorage");
+      }
+    });
   }
 
   connect(email, password) {
@@ -50,16 +53,21 @@ export class SessionService {
       "password": password
     }
 
-    this.httpClient.post(url, body).subscribe(
-      (response) => {
-        let token = response['token'];
-        let username = response['userName'];
-        localStorage.setItem('token', token);
-        localStorage.setItem('username', username);
-        localStorage.setItem('email', email);
-      },
-      (error) => {
-        console.log(error);
+    return new Promise((resolve, reject) => {
+        this.httpClient.post(url, body).subscribe(
+          (response) => {
+            let token = response['token'];
+            let username = response['userName'];
+            localStorage.setItem('token', token);
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            resolve();
+          },
+          (error) => {
+            console.log(error);
+            reject();
+          }
+        );
       }
     );
   }
@@ -80,20 +88,22 @@ export class SessionService {
       "password": hashPassword
     }
 
-    this.httpClient.post(url, parameters).subscribe(
-      (response) => {
-        console.log(response);
-        let token = response['token'];
-        if(token !== null) {
-          localStorage.setItem('token', token);
-          localStorage.setItem('username', username);
-          localStorage.setItem('email', email);
+    return new Promise((resolve, reject) => {
+      this.httpClient.post(url, parameters).subscribe(
+        (response) => {
+          let token = response['token'];
+          if(token !== null) {
+            localStorage.setItem('token', token);
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+          }
+          resolve();
+        },
+        (error) => {
+          reject(error);
         }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      );
+    });
   }
 
   getUsername() : string {
