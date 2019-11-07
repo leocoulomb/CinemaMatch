@@ -17,8 +17,9 @@ export class SessionService {
       let token = localStorage.getItem('token');
       if(token !== null) {
         const url = "http://34.77.176.92/users/preconnect";
-        const header = new HttpHeaders();
-        header.set('Authorization', "Bearer " + token);
+        const header = new HttpHeaders({
+          'Authorization': "Bearer " + token
+        });
         this.httpClient.post(url, null, {headers: header}).subscribe(
           (response) => {
             if(response['auth'] === true) {
@@ -26,20 +27,21 @@ export class SessionService {
               let email = response['user']['email'];
               localStorage.setItem('username', username);
               localStorage.setItem('email', email);
-              console.log("Successfully preconnected");
+              console.log("successfully preconnected");
               resolve();
             } else {
               localStorage.removeItem('token');
-              reject("Failed to preconnect (non existent token");
+              reject();
             }
           },
           (error) => {
-            console.log("Failed to preconnect (bad request)");
+            console.log("failed to preconnect (bad request)");
             reject();
           }
         );
       } else {
-        reject("No token in localstorage");
+        console.log("no token in localstorage");
+        reject();
       }
     });
   }
@@ -100,7 +102,7 @@ export class SessionService {
           resolve();
         },
         (error) => {
-          reject(error);
+          reject();
         }
       );
     });
