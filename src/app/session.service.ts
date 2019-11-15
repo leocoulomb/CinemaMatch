@@ -58,6 +58,7 @@ export class SessionService {
     return new Promise((resolve, reject) => {
         this.httpClient.post(url, body).subscribe(
           (response) => {
+            console.log(response);
             let token = response['token'];
             let username = response['userName'];
             localStorage.setItem('token', token);
