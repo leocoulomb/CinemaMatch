@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  constructor(private httpClient : HttpClient) { 
-    
+  constructor(private httpClient: HttpClient) {
+
   }
 
   preconnect() {
     return new Promise((resolve, reject) => {
       let token = localStorage.getItem('token');
-      if(token !== null) {
+      if (token !== null) {
         const url = "http://34.77.176.92/users/preconnect";
         const header = new HttpHeaders({
           'Authorization': "Bearer " + token
         });
-        this.httpClient.post(url, null, {headers: header}).subscribe(
+        this.httpClient.post(url, null, { headers: header }).subscribe(
           (response) => {
-            if(response['auth'] === true) {
+            if (response['auth'] === true) {
               let username = response['user']['name'];
               let email = response['user']['email'];
               localStorage.setItem('username', username);
@@ -56,8 +56,11 @@ export class SessionService {
     }
 
     return new Promise((resolve, reject) => {
-        this.httpClient.post(url, body).subscribe(
-          (response) => {
+      this.httpClient.post(url, body).subscribe(
+        (response) => {
+          if (response['errorMsg']) {
+            reject();
+          } else {
             console.log(response);
             let token = response['token'];
             let username = response['userName'];
@@ -65,13 +68,14 @@ export class SessionService {
             localStorage.setItem('username', username);
             localStorage.setItem('email', email);
             resolve();
-          },
-          (error) => {
-            console.log(error);
-            reject();
           }
-        );
-      }
+        },
+        (error) => {
+          console.log(error);
+          reject();
+        }
+      );
+    }
     );
   }
 
@@ -95,7 +99,7 @@ export class SessionService {
       this.httpClient.post(url, parameters).subscribe(
         (response) => {
           let token = response['token'];
-          if(token !== null) {
+          if (token !== null) {
             localStorage.setItem('token', token);
             localStorage.setItem('username', username);
             localStorage.setItem('email', email);
@@ -109,15 +113,15 @@ export class SessionService {
     });
   }
 
-  getUsername() : string {
+  getUsername(): string {
     let username = localStorage.getItem('username');
     return (username !== null) ? username : null;
   }
-  getEmail() : string {
+  getEmail(): string {
     let email = localStorage.getItem('email');
     return (email !== null) ? email : null;
   }
-  isConnected() : boolean {
+  isConnected(): boolean {
     return (localStorage.getItem('token') !== null);
   }
 }

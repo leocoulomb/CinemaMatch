@@ -31,13 +31,8 @@ export class LoginComponent implements OnInit {
 		console.log(this.angForm.value);
 
 		this.session.connect(this.angForm.value.email, this.angForm.value.password)
-		.then((response) => {
-			if(response['errorMsg']) {
-				console.log('bad password');
-			} else {
-				this.router.navigateByUrl('/home');
-			}
-
+		.then(() => {
+			console.log("test");
 			this.router.navigateByUrl('/home');
 		})
 		.catch(() => {
