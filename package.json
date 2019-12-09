@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
+    "@types/jest": "^24.0.23",
     "bootstrap": "^3.3.7",
     "rxjs": "~6.4.0",
     "ts-md5": "^1.2.7",

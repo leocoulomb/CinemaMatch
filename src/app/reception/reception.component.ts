@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-reception',
   templateUrl: './reception.component.html',

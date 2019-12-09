@@ -48,7 +48,8 @@
             ],
             "styles": [
               "../CinemaMatch/node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/fontawesome-free-5.11.2-web/css/regular.css"
             ],
             "scripts": []
           },
