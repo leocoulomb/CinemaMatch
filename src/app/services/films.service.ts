@@ -2,6 +2,7 @@ export class FilmService {
     //récupérer tous les films
     films = [
         {
+            id: "0",
             title: "Shadow Play",
             year: "1986",
             rated: "R",
@@ -29,6 +30,7 @@ export class FilmService {
             website: "N/A"
         },
         {
+            id: "1",
             title: "The Best of 'Allo 'Allo!",
             year: "1994",
             rated: "N/A",
@@ -56,6 +58,7 @@ export class FilmService {
             website: "N/A"
         },
         {
+            id: "2",
             title: "Til Death Do Us Part",
             year: "2017",
             rated: "PG-13",

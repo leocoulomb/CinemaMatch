@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FilmComponent implements OnInit {
 
+  @Input() id: string;
   @Input() poster: string;
   @Input() title : string;
   @Input() runtime: string;
@@ -15,6 +16,10 @@ export class FilmComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  test() {
+    console.log("ID : ", this.id);
   }
 
 }

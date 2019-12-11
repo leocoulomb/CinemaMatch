@@ -6,6 +6,7 @@
     <p>TOUS LES FILMS</p>  
     <ul class="list-group-item">
         <app-film *ngFor="let film of films; let i = index"
+            [id]="film.id"
             [poster]="film.poster"
             [title]="film.title"
             [runtime]="film.runtime"

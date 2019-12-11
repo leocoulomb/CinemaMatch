@@ -47,11 +47,12 @@
               "src/assets"
             ],
             "styles": [
-              "../CinemaMatch/node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.scss",
-              "src/assets/css/fontawesome-free-5.11.2-web/css/regular.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ]
           },
           "configurations": {
             "production": {

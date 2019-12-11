@@ -15,7 +15,8 @@ import { SmartFilmsComponent } from './smart-films/smart-films.component';
 import { CustomNavbarComponent } from './utils/custom-navbar/custom-navbar.component';
 import { FilmComponent } from './film/film.component';
 import { AllFilmsComponent } from './all-films/all-films.component';
-import { FilmService } from './services/films.service'
+import { FilmService } from './services/films.service';
+import { FilmPageComponent } from './film-page/film-page.component'
 
 const appRoutes: Routes = [
 	{ path: '', component: ReceptionComponent },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'mentions', component: MentionsLegalesComponent },
 	{ path: 'all-films', component: AllFilmsComponent},
-	{ path: 'smart-films', component: SmartFilmsComponent}
+	{ path: 'smart-films', component: SmartFilmsComponent},
+	{ path: 'film-page', component: FilmPageComponent}
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
 	SmartFilmsComponent,
 	CustomNavbarComponent,
 	FilmComponent,
-	AllFilmsComponent
+	AllFilmsComponent,
+	FilmPageComponent
 
   ],
   exports: [
