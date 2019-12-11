@@ -1,6 +1,4 @@
-
-    console.log('cc');
-    var TxtRotate = function(el, toRotate, period) {
+var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
   this.loopNum = 0;
@@ -10,7 +8,7 @@
   this.isDeleting = false;
 };
 
-TxtRotate.prototype.tick = function() {
+TxtRotate.prototype.tick = function () {
   var i = this.loopNum % this.toRotate.length;
   var fullTxt = this.toRotate[i];
 
@@ -20,7 +18,7 @@ TxtRotate.prototype.tick = function() {
     this.txt = fullTxt.substring(0, this.txt.length + 1);
   }
 
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
   var that = this;
   var delta = 300 - Math.random() * 100;
@@ -36,14 +34,14 @@ TxtRotate.prototype.tick = function() {
     delta = 500;
   }
 
-  setTimeout(function() {
+  setTimeout(function () {
     that.tick();
   }, delta);
 };
 
-window.onload = function() {
+window.onload = function () {
   var elements = document.getElementsByClassName('txt-rotate');
-  for (var i=0; i<elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     var toRotate = elements[i].getAttribute('data-rotate');
     var period = elements[i].getAttribute('data-period');
     if (toRotate) {
@@ -61,7 +59,7 @@ window.onload = function() {
 var header = $('body');
 
 var backgrounds = new Array(
-    'linear-gradient(to right, rgb(14, 14, 14) 54%, rgba(14, 14, 14,0.55) 70%, rgba(50, 50, 50,0.5) 75%,rgba(100, 100, 100,0.1), rgba(255, 255, 255,0) ),url(assets/img/wonder.jpg)'
+  'linear-gradient(to right, rgb(14, 14, 14) 54%, rgba(14, 14, 14,0.55) 70%, rgba(50, 50, 50,0.5) 75%,rgba(100, 100, 100,0.1), rgba(255, 255, 255,0) ),url(assets/img/wonder.jpg)'
   , 'url(assets/img/marvel_deadpool.jpg)'
   , 'url(assets/img/Aqua.jpg)'
   , 'url(assets/img/spiderman.jpg)'
@@ -71,10 +69,10 @@ var backgrounds = new Array(
 var current = 0;
 
 function nextBackground() {
-    current++;
-    current = current % backgrounds.length;
-    header.css('background-image', 'linear-gradient(to right, rgb(14, 14, 14) 54%, rgba(14, 14, 14,0.55) 70%, rgba(50, 50, 50,0.5) 75%,rgba(100, 100, 100,0.1), rgba(255, 255, 255,0) ),'+ backgrounds[current]);
-    backgrounds[0] = 'url(assets/img/Wonder.jpg)'
+  current++;
+  current = current % backgrounds.length;
+  header.css('background-image', 'linear-gradient(to right, rgb(14, 14, 14) 54%, rgba(14, 14, 14,0.55) 70%, rgba(50, 50, 50,0.5) 75%,rgba(100, 100, 100,0.1), rgba(255, 255, 255,0) ),' + backgrounds[current]);
+  backgrounds[0] = 'url(assets/img/wonder.jpg)'
 }
 setInterval(nextBackground, 2000);
 
