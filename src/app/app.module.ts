@@ -11,13 +11,22 @@ import { ReceptionComponent } from './reception/reception.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { SmartFilmsComponent } from './smart-films/smart-films.component';
+import { CustomNavbarComponent } from './utils/custom-navbar/custom-navbar.component';
+import { FilmComponent } from './film/film.component';
+import { AllFilmsComponent } from './all-films/all-films.component';
+import { FilmService } from './services/films.service';
+import { FilmPageComponent } from './film-page/film-page.component'
 
 const appRoutes: Routes = [
 	{ path: '', component: ReceptionComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'home', component: HomeComponent },
-	{ path: 'mentions', component: MentionsLegalesComponent }
+	{ path: 'mentions', component: MentionsLegalesComponent },
+	{ path: 'all-films', component: AllFilmsComponent},
+	{ path: 'smart-films', component: SmartFilmsComponent},
+	{ path: 'film-page', component: FilmPageComponent}
 ];
 
 @NgModule({
@@ -28,7 +37,12 @@ const appRoutes: Routes = [
 	LoginComponent,
 	ButtonMat,
 	MentionsLegalesComponent,
-	HomeComponent
+	HomeComponent,
+	SmartFilmsComponent,
+	CustomNavbarComponent,
+	FilmComponent,
+	AllFilmsComponent,
+	FilmPageComponent
 
   ],
   exports: [
@@ -40,7 +54,7 @@ const appRoutes: Routes = [
 	ReactiveFormsModule,
 	HttpClientModule
   ],
-  providers: [],
+  providers: [FilmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     })
     .catch(() => {
       console.log('try to access home but could not preconnect');
-      this.router.navigateByUrl('/');  
+      //this.router.navigateByUrl('/');  
     });
   }
 
