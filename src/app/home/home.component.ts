@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
   onDisconnect() {
     this.session.disconnect();
     this.router.navigateByUrl('/');
