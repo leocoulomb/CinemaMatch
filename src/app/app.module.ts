@@ -14,9 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { SmartFilmsComponent } from './smart-films/smart-films.component';
 import { CustomNavbarComponent } from './utils/custom-navbar/custom-navbar.component';
 import { FilmComponent } from './film/film.component';
-import { AllFilmsComponent } from './all-films/all-films.component';
-import { FilmService } from './services/films.service';
-import { FilmPageComponent } from './film-page/film-page.component'
+import { FilmCardComponent } from './film-card/film-card.component';
+import { FilmPageComponent } from './film-page/film-page.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: ReceptionComponent },
@@ -24,9 +23,9 @@ const appRoutes: Routes = [
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'home', component: HomeComponent },
 	{ path: 'mentions', component: MentionsLegalesComponent },
-	{ path: 'all-films', component: AllFilmsComponent},
 	{ path: 'smart-films', component: SmartFilmsComponent},
-	{ path: 'film-page', component: FilmPageComponent}
+	{ path: 'film', component: FilmComponent},
+	{ path: 'film/:id', component: FilmPageComponent},
 ];
 
 @NgModule({
@@ -41,7 +40,7 @@ const appRoutes: Routes = [
 	SmartFilmsComponent,
 	CustomNavbarComponent,
 	FilmComponent,
-	AllFilmsComponent,
+	FilmCardComponent,
 	FilmPageComponent
 
   ],
@@ -54,7 +53,7 @@ const appRoutes: Routes = [
 	ReactiveFormsModule,
 	HttpClientModule
   ],
-  providers: [FilmService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

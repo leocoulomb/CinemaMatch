@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MoviesService } from '../movies.service';
+import { Router } from '@angular/router';
+import { from, Observable } from 'rxjs';
+import { __values } from 'tslib';
+import { Movie } from '../metier/movie';
 
 @Component({
   selector: 'app-film',
@@ -7,19 +12,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FilmComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() poster: string;
-  @Input() title : string;
-  @Input() runtime: string;
-  @Input() genre: string;
+  movies: Array<Movie>;
 
-  constructor() { }
+
+
+  constructor(private router: Router, private moviesService: MoviesService) {
+
+
+  }
+
 
   ngOnInit() {
-  }
+    this.moviesService.getMovies(25, 10)
+      .then((value) => {
+        this.movies = value['movies'];
+      })
 
-  test() {
-    console.log("ID : ", this.id);
-  }
 
+  }
 }

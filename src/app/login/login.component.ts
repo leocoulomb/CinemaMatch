@@ -24,22 +24,26 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.loadScript('../assets/js/login.js');
-		this.loadScript('../assets/js/anime.js');
+		//this.loadScript('../assets/js/login.js');
+		//this.loadScript('../assets/js/anime.js');
 		this.session.disconnect();
 	}
 
 	verifConnection() {
-		//console.log(this.angForm.value);
+		this.session.connect(this.angForm.value.email, this.angForm.value.password)
+		.then((response) => {
+			
+			if(response['errorMsg']) {
+				console.log('bad password');
+			} else {
+				this.router.navigateByUrl('/home');
+			}
 
-		//this.session.connect(this.angForm.value.email, this.angForm.value.password)
-		//.then(() => {
-			console.log("test");
 			this.router.navigateByUrl('/home');
-		//})
-		//.catch(() => {
-		//	alert("Bad identification");
-		//});
+		})
+		.catch((error) => {
+			alert("Bad identification");
+		});
 	}
 
 	public loadScript(url: string) {
