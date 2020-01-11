@@ -22,7 +22,10 @@ export class FilmPageComponent implements OnInit {
       this.movie = value['movie'];
       this.viewed = value['viewed'];
       this.liked = value['liked'];
-      console.log(value);
+      let sumRatings = 0;
+      this.movie.ratings.forEach(item => sumRatings += item.value)
+      this.movie.avgRating = sumRatings / this.movie.ratings.length;
+      console.log(this.movie.avgRating);
     });
 
   }

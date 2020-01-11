@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		//this.loadScript('../assets/js/login.js');
-		//this.loadScript('../assets/js/anime.js');
+		this.loadScript('../assets/js/login.js');
+		this.loadScript('../assets/js/anime.js');
 		this.session.disconnect();
 	}
 
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
 			if(response['errorMsg']) {
 				console.log('bad password');
 			} else {
-				this.router.navigateByUrl('/home');
+				// this.router.navigateByUrl('/home');
+				window.location.pathname = '/home';
 			}
 
 			this.router.navigateByUrl('/home');

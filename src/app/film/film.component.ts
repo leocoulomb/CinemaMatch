@@ -26,7 +26,13 @@ export class FilmComponent implements OnInit {
     this.moviesService.getMovies(25, 10)
       .then((value) => {
         this.movies = value['movies'];
-      })
+        for (let i = 0; i < value['movies'].length; i++){
+          let sumRatings = 0;
+          this.movies[i].ratings.forEach(item => sumRatings += item.value)
+          this.movies[i].avgRating = sumRatings / this.movies[i].ratings.length;
+        }
+      });
+    
 
 
   }

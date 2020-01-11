@@ -8,8 +8,8 @@
         <p><strong>Release Date: </strong>{{movie.released}}</p>
         <p>
             <a routerLink="/film/{{movie._id}}">View details &raquo;</a>
-            <small class="label label-success pull-right" *ngIf="movie.vote_average">
-                {{avgRatings}}
+            <small class="label label-success pull-right" *ngIf="movie.avgRating">
+                {{movie.avgRating | number }}
                 <i class="glyphicon glyphicon-star"></i>
             </small>
         </p>

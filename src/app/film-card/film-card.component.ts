@@ -22,9 +22,6 @@ export class FilmCardComponent implements OnInit {
     }
     
     this.poster_path = this.movie.poster != null; 
-
-    let avgRatings;
-
   }
 
 }
