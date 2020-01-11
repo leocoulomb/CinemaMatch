@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ButtonMat } from './utils/button/button.component';
 import { MentionsLegalesComponent } from './utils/mentions-legales/mentions-legales.component'
 
@@ -41,7 +42,9 @@ const appRoutes: Routes = [
 	CustomNavbarComponent,
 	FilmComponent,
 	FilmCardComponent,
-	FilmPageComponent
+	FilmPageComponent,
+	JwPaginationComponent
+	
 
   ],
   exports: [

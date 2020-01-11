@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { Router } from '@angular/router';
-import { from, Observable } from 'rxjs';
 import { __values } from 'tslib';
 import { Movie } from '../metier/movie';
 
@@ -13,6 +12,8 @@ import { Movie } from '../metier/movie';
 export class FilmComponent implements OnInit {
 
   movies: Array<Movie>;
+  items: Array<any>;
+  pageOfItems: Array<any>;
 
 
 
@@ -23,17 +24,21 @@ export class FilmComponent implements OnInit {
 
 
   ngOnInit() {
-    this.moviesService.getMovies(25, 10)
+    this.moviesService.getMovies(10,50)
       .then((value) => {
         this.movies = value['movies'];
-        for (let i = 0; i < value['movies'].length; i++){
+        this.items = value['movies'];
+        console.log(value);
+        for (let i = 0; i < value['movies'].length; i++) {
           let sumRatings = 0;
-          this.movies[i].ratings.forEach(item => sumRatings += item.value)
-          this.movies[i].avgRating = sumRatings / this.movies[i].ratings.length;
-        }
-      });
-    
+          //this.movies[i].ratings.forEach(item => sumRatings += item.value)
+          //this.movies[i].avgRating = sumRatings / this.movies[i].ratings.length;
+        }});
+    }
 
 
-  }
+  onChangePage(pageOfItems) {
+        // update current page of items
+        this.pageOfItems = pageOfItems;
+      }
 }
