@@ -17,6 +17,8 @@ import { CustomNavbarComponent } from './utils/custom-navbar/custom-navbar.compo
 import { FilmComponent } from './film/film.component';
 import { FilmCardComponent } from './film-card/film-card.component';
 import { FilmPageComponent } from './film-page/film-page.component';
+import { FilmMatchComponent } from './film-match/film-match.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
 	{ path: '', component: ReceptionComponent },
@@ -43,8 +45,9 @@ const appRoutes: Routes = [
 	FilmComponent,
 	FilmCardComponent,
 	FilmPageComponent,
-	JwPaginationComponent
-	
+	JwPaginationComponent,
+	FilmMatchComponent,
+	SmartFilmsComponent
 
   ],
   exports: [
@@ -54,9 +57,10 @@ const appRoutes: Routes = [
 	BrowserModule,
 	RouterModule.forRoot(appRoutes),
 	ReactiveFormsModule,
-	HttpClientModule
+	HttpClientModule,
+	BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, SmartFilmsComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'src/app/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-navbar',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private session: SessionService, private router : Router) { }
 
   ngOnInit() {
   }
 
+  onDisconnect() {
+    this.session.disconnect();
+    this.router.navigateByUrl('/');
+  }
 }
