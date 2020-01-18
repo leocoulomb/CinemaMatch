@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, keyframes, animate, transition } from "@angular/animations";
-//import * as kf from '../smart-films/keyframes';
 import { Subject } from 'rxjs';
 
 export interface Film {
@@ -13,19 +12,13 @@ export interface Film {
 @Component({
   selector: 'app-film-match',
   templateUrl: './film-match.component.html',
-  styleUrls: ['./film-match.component.scss'],
-  //animations: [
-  //  trigger('cardAnimator', [
-  //    transition('* => swiperight', animate(750, keyframes(kf.swiperight))),
-  //    transition('* => swipeleft', animate(750, keyframes(kf.swipeleft)))
-  //  ])
-  //]
+  styleUrls: ['./film-match.component.scss']
 })
 export class FilmMatchComponent implements OnInit {
   public films: Film[] = [
     {
       "id": 0,
-      "poster": "https://placehold.it/350x349",
+      "poster": "https://www.benefsnet.com/images/cms/film.gif",
       "title": "Film1",
       "genre": "lol"
     },
@@ -48,16 +41,31 @@ export class FilmMatchComponent implements OnInit {
 
   animationState: string;
 
+  private votes: { [id: string] : string; } = {};
+
   constructor() { }
 
   ngOnInit() {
+    this.votes = {}
     this.parentSubject.subscribe(status => {
+      this.votes[this.films[this.index].id] = status
       this.index++
-      if(this.index >= this.films.length) this.index = 0
+      if(this.index >= this.films.length) {
+        this.index = 0
+        this.saveInformation() 
+      }
     });
   }
 
   ngOnDestroy() {
     this.parentSubject.unsubscribe();
+  }
+
+  saveInformation() {
+    console.log(this.votes)
+    for(let [id, status] of Object.entries(this.votes)) {
+      // TODO => compléter la base avec les services ou envoyer requête serveur
+    }
+    this.votes = {}
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-smart-films',
@@ -16,6 +16,7 @@ export class SmartFilmsComponent implements OnInit {
   }
 
   onClick(status) {
+    console.log(status)
     this.parentSubject.next(status);
   }
 }
