@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, keyframes, animate, transition } from "@angular/animations";
 import { Subject } from 'rxjs';
+import { MoviesService } from '../movies.service';
 
 export interface Film {
   id: number;
@@ -43,7 +44,7 @@ export class FilmMatchComponent implements OnInit {
 
   private votes: { [id: string] : string; } = {};
 
-  constructor() { }
+  constructor(private moviesService : MoviesService) { }
 
   ngOnInit() {
     this.votes = {}
@@ -64,7 +65,14 @@ export class FilmMatchComponent implements OnInit {
   saveInformation() {
     console.log(this.votes)
     for(let [id, status] of Object.entries(this.votes)) {
-      // TODO => compléter la base avec les services ou envoyer requête serveur
+      if (status === 'like') {
+        this.moviesService.swapView(id);
+        this.moviesService.swapLike(id);
+      } else if (status === 'dislike') {
+        this.moviesService.swapView(id);
+      } else if (status === 'unseen') {
+        
+      }
     }
     this.votes = {}
   }
