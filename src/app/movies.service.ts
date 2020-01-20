@@ -79,6 +79,7 @@ export class MoviesService {
       this.communication.post(this.KW_url_swap_like, header, body)
       .then((response) => {
         this.sessionService.setToken(response['token']);
+        console.log(response);
         resolve(response);
       })
       .catch((error) => {

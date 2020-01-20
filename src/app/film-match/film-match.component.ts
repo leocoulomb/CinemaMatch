@@ -3,77 +3,96 @@ import { trigger, keyframes, animate, transition } from "@angular/animations";
 import { Subject } from 'rxjs';
 import { MoviesService } from '../movies.service';
 
-export interface Film {
-  id: number;
-  poster: string;
-  title: string;
-  genre: string;
-}
-
 @Component({
   selector: 'app-film-match',
   templateUrl: './film-match.component.html',
   styleUrls: ['./film-match.component.scss']
 })
 export class FilmMatchComponent implements OnInit {
-  public films: Film[] = [
-    {
-      "id": 0,
-      "poster": "https://www.benefsnet.com/images/cms/film.gif",
-      "title": "Film1",
-      "genre": "lol"
-    },
-    {
-        "id": 1,
-        "poster": "https://placehold.it/350x349",
-        "title": "Film2",
-        "genre": "pas lol"
-    },
-    {
-        "id": 2,
-        "poster": "https://placehold.it/350x349",
-        "title": "Film3",
-        "genre": "cafépeur"
-    }
-];
+
+  public templates : string[] = [
+    "5dcfb536fb30a6da7a682658", // Titanic ()
+    "5dcfb540fb30a6da7a6831e6", // Avatar (Sci-Fi)
+    "5dcfb67bfb30a6da7a689410", // Forrest Gump (Drama Romance)
+    "5dcfb543fb30a6da7a68343f", // Toy Story (Animation)
+    "5dcfb534fb30a6da7a6821f0", // Rocky (Sport)
+    "5dcfb58bfb30a6da7a6854fc", // Braveheart (History)
+    "5dcfb530fb30a6da7a6813e5", // Star Wars (Sci-fi)
+    "5dcfbefffb30a6da7a695843", // The Shining (Horror)
+  ];
+
+  public title : string;
+  public poster : string;
+  public genre : string;
+  
   public index = 0;
+  private votes: { [id: string] : string; } = {};
+
   @Input()
   parentSubject: Subject<any>;
 
   animationState: string;
 
-  private votes: { [id: string] : string; } = {};
-
   constructor(private moviesService : MoviesService) { }
 
   ngOnInit() {
     this.votes = {}
+
+    this.loadFilm(this.templates[0]);
     this.parentSubject.subscribe(status => {
-      this.votes[this.films[this.index].id] = status
-      this.index++
-      if(this.index >= this.films.length) {
-        this.index = 0
-        this.saveInformation() 
+      this.votes[this.templates[this.index]] = status;
+      this.index++;
+      if(this.index >= this.templates.length) {
+        this.index = 0;
+        this.saveInformation(); 
       }
+      this.loadFilm(this.templates[this.index]);
     });
+  }
+
+  private async loadFilm(id) {
+    try {
+      const movie = await this.moviesService.getMovie(id);
+      this.title = movie['movie']['title'];
+      this.genre = 'temp'; // movie['genre'];
+      this.poster = movie['movie']['poster'];
+    } catch(error) {
+      console.log("Failed to load ", id);
+    }
   }
 
   ngOnDestroy() {
     this.parentSubject.unsubscribe();
   }
 
-  saveInformation() {
-    console.log(this.votes)
+  async saveInformation() {
     for(let [id, status] of Object.entries(this.votes)) {
-      if (status === 'like') {
-        this.moviesService.swapView(id);
-        this.moviesService.swapLike(id);
-      } else if (status === 'dislike') {
-        this.moviesService.swapView(id);
-      } else if (status === 'unseen') {
-        
+      try {
+        let movie = await this.moviesService.getMovie(id);
+        let viewed = movie['viewed'];
+        let liked = movie['liked'];
+
+        if (status === 'like') {
+          if (!viewed) await this.moviesService.swapView(id);
+          if (!liked) await this.moviesService.swapLike(id);
+        } else if (status === 'dislike') {
+          if (!viewed) await this.moviesService.swapView(id);
+          if (liked) await this.moviesService.swapLike(id);
+        } else if (status === 'unseen') {
+          if (viewed) await this.moviesService.swapView(id);
+          if (liked) await this.moviesService.swapLike(id);
+        }
+
+        // movie = await this.moviesService.getMovie(id);
+        // viewed = movie['viewed'];
+        // liked = movie['liked'];
+        // console.log(viewed, liked);
+
+      } catch(error) {
+        console.log("Failed to save information ", error);
       }
     }
+
     this.votes = {}
   }
 }

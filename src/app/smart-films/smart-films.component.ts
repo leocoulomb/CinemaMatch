@@ -16,7 +16,6 @@ export class SmartFilmsComponent implements OnInit {
   }
 
   onClick(status) {
-    console.log(status)
     this.parentSubject.next(status);
   }
 }
