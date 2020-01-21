@@ -13,6 +13,7 @@ export class MoviesService {
   readonly KW_url_movies_pages = this.KW_url;
   readonly KW_url_specific_movie = this.KW_url;
   readonly KW_url_generate_movie_list = this.KW_url + "/customsearch";
+  readonly KW_url_random = this.KW_url + "/random";
 
   readonly KW_url_swap_like = this.KW_url + "/liked";
   readonly KW_url_swap_view = this.KW_url + "/changeView";
@@ -47,6 +48,23 @@ export class MoviesService {
       this.communication.get(this.KW_url_specific_movie + "/" + id, header)
       .then((response) => {
         resolve(response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
+  }
+
+  public getRandomMovie(count, fields = []) {
+    const header = this.sessionService.buildAuthentificationHeader();
+    const body = {
+      'nbRandomMovies': count,
+      'requiredFields': fields
+    };
+    return new Promise((resolve, reject) => {
+      this.communication.post(this.KW_url_random, header, body)
+      .then((response) => {
+        resolve(response['movies']);
       })
       .catch((error) => {
         reject(error);

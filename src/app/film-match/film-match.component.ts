@@ -11,7 +11,7 @@ import { MoviesService } from '../movies.service';
 export class FilmMatchComponent implements OnInit {
 
   public templates : string[] = [
-    "5dcfb536fb30a6da7a682658", // Titanic ()
+    "5dcfb536fb30a6da7a682658", // Titanic (Drama Romance)
     "5dcfb540fb30a6da7a6831e6", // Avatar (Sci-Fi)
     "5dcfb67bfb30a6da7a689410", // Forrest Gump (Drama Romance)
     "5dcfb543fb30a6da7a68343f", // Toy Story (Animation)
@@ -19,6 +19,10 @@ export class FilmMatchComponent implements OnInit {
     "5dcfb58bfb30a6da7a6854fc", // Braveheart (History)
     "5dcfb530fb30a6da7a6813e5", // Star Wars (Sci-fi)
     "5dcfbefffb30a6da7a695843", // The Shining (Horror)
+    "5dcfb532fb30a6da7a681dda", // Raiders of the Lost Ark (Action Adventure)
+    "5dcfb6b3fb30a6da7a689ebe", // Grease (Musical Romance)
+    "5dcfb54efb30a6da7a683c85", // Back to the Future (Adventure Comedy Sci-fi)
+    "5dcfb532fb30a6da7a681d5b", // The Good, the Bad and the Ugly (Western)
   ];
 
   public title : string;
@@ -57,7 +61,7 @@ export class FilmMatchComponent implements OnInit {
       this.genre = 'temp'; // movie['genre'];
       this.poster = movie['movie']['poster'];
     } catch(error) {
-      console.log("Failed to load ", id);
+      console.log("Failed to load ", id, error);
     }
   }
 
