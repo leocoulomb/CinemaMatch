@@ -62,7 +62,7 @@
 }
 
 #movies {
-    min-height: 100vh;
+    min-height: 75vh;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -99,9 +99,10 @@
 }
 #movies figure figcaption p {
   text-transform: capitalize !important;
-  font-size: .70em !important;
+  font-size: 1.1em !important;
   font-weight: 600 !important;
   color: #dcbe00 !important;
+  margin-bottom: 11px;
 }
 #movies figure figcaption .rating {
   display: flex;
@@ -145,7 +146,8 @@
     text-transform: uppercase;
     font-weight: 600 !important;
     color: #737373 !important;
-    font-size: 1.5rem !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 5px !important;
 }
 
 #movies figure figcaption p {
@@ -179,7 +181,7 @@
 }
 
 ::ng-deep  h4 {
-  font-size: 1.6rem;
+  font-size: 1.1rem;
 }
 
 ::ng-deep .test{
