@@ -1,54 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
-import { ButtonMat } from './utils/button/button.component';
-import { MentionsLegalesComponent } from './utils/mentions-legales/mentions-legales.component'
 
 import { AppComponent } from './app.component';
 import { ReceptionComponent } from './reception/reception.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './utils/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { SmartFilmsComponent } from './smart-films/smart-films.component';
-import { CustomNavbarComponent } from './utils/custom-navbar/custom-navbar.component';
-import { FilmComponent } from './film/film.component';
-import { FilmPageComponent } from './film-page/film-page.component'
+import { FooterComponent } from './utils/footer/footer.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MoviesComponent } from './movies/movies.component';
+import { CineteamComponent } from './cineteam/cineteam.component';
+import { LegalMentionComponent } from './legal-mention/legal-mention.component';
 
 const appRoutes: Routes = [
-	{ path: '', component: ReceptionComponent },
-	{ path: 'login', component: LoginComponent },
-	{ path: 'register', component: RegisterComponent },
-	{ path: 'home', component: HomeComponent },
-	{ path: 'mentions', component: MentionsLegalesComponent },
-	{ path: 'smart-films', component: SmartFilmsComponent},
-	{ path: 'film-page', component: FilmPageComponent}
+  { path: '', component: ReceptionComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'cineteam', component: CineteamComponent },
+  { path: 'legal-mention', component: LegalMentionComponent },
+  { path: 'movies', component: MoviesComponent }
 ];
 
 @NgModule({
   declarations: [
-	AppComponent,
-	ReceptionComponent,
-	RegisterComponent,
-	LoginComponent,
-	ButtonMat,
-	MentionsLegalesComponent,
-	HomeComponent,
-	SmartFilmsComponent,
-	CustomNavbarComponent,
-	FilmComponent,
-	FilmPageComponent
-
-  ],
-  exports: [
-	  RouterModule
+    AppComponent,
+    ReceptionComponent,
+    RegisterComponent,
+    LoginComponent,
+    NavbarComponent,
+    HomeComponent,
+    FooterComponent,
+    MovieCardComponent,
+    MoviesComponent,
+    CineteamComponent,
+    LegalMentionComponent
   ],
   imports: [
-	BrowserModule,
-	RouterModule.forRoot(appRoutes),
-	ReactiveFormsModule,
-	HttpClientModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

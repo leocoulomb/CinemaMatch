@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header">
+        <img class="card-img" src="{{movie.poster}}" alt="Card image" *ngIf="movie.poster">
+        <img class="card-img" src="../../assets/img/abstract-image.jpg" alt="Card image" *ngIf="!movie.poster">
+    </div>
+    <div class="card-body">
+        <h1 class="card-title">{{movie.title}}</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-4 metadata">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <p>9.5/10</p>
+                </div>
+                <div class="col-8 metadata">Adventure. Sci-Fi</div>
+            </div>
+        </div>
+        <p class="card-text">{{movie.plot}}</p>
+        <a class="trailer-preview" href="https://youtu.be/ePbKGoIGAXY" target="new">
+            <i class="fa fa-play" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import { CommunicationService } from './communication.service';
 export class MoviesService {
 
   readonly KW_url = "http://34.77.176.92/movies";
-  
+
   readonly KW_url_viewed_movies = this.KW_url + "/viewed";
   readonly KW_url_movies_pages = this.KW_url;
   readonly KW_url_specific_movie = this.KW_url;
@@ -17,19 +17,11 @@ export class MoviesService {
   readonly KW_url_swap_like = this.KW_url + "/liked";
   readonly KW_url_swap_view = this.KW_url + "/changeView";
 
-  constructor(private communication : CommunicationService, private sessionService : SessionService) { }
+  constructor(private communication: CommunicationService, private sessionService: SessionService) { }
 
   public getViewedMovies() {
     const header = this.sessionService.buildAuthentificationHeader();
-    return new Promise((resolve, reject) => {
-      this.communication.get(this.KW_url_viewed_movies, header)
-      .then((response) => {
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-    });
+    return this.communication.get(this.KW_url_viewed_movies, header);
   }
 
   public getMovies(page, nbPerPage = 5) {
@@ -40,12 +32,12 @@ export class MoviesService {
       url += "&";
       url += "page=" + page;
       this.communication.get(url, header)
-      .then((response) => {
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -53,12 +45,12 @@ export class MoviesService {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
       this.communication.get(this.KW_url_specific_movie + "/" + id, header)
-      .then((response) => {
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -66,12 +58,12 @@ export class MoviesService {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
       this.communication.get(this.KW_url_generate_movie_list, header)
-      .then((response) => {
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -85,13 +77,13 @@ export class MoviesService {
 
     return new Promise((resolve, reject) => {
       this.communication.post(this.KW_url_swap_like, header, body)
-      .then((response) => {
-        this.sessionService.setToken(response['token']);
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((response) => {
+          this.sessionService.setToken(response['token']);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
@@ -103,13 +95,13 @@ export class MoviesService {
 
     return new Promise((resolve, reject) => {
       this.communication.post(this.KW_url_swap_view, header, body)
-      .then((response) => {
-        this.sessionService.setToken(response['token']);
-        resolve(response);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+        .then((response) => {
+          this.sessionService.setToken(response['token']);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 }
