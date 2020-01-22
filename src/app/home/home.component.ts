@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
 import { Route, ActivatedRoute, Router } from '@angular/router';
+import { MoviesService } from '../movies.service';
+import { Movie } from '../metier/movie';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,9 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private session : SessionService, private router : Router) { }
+  rdmMovies: Array<Movie>;
+
+  constructor(private session : SessionService, private router : Router, private moviesService : MoviesService) { }
 
   ngOnInit() {
     this.loadScript('../assets/js/slick.min.js');
@@ -23,6 +27,11 @@ export class HomeComponent implements OnInit {
       console.log('try to access home but could not preconnect');
       this.router.navigateByUrl('/');  
     });
+
+    this.moviesService.getRandomMovie(8,["poster"])
+    .then((value) => {
+      this.rdmMovies = value['movies'];
+     });
   }
   public loadScript(url: string) {
     const body = <HTMLDivElement>document.body;

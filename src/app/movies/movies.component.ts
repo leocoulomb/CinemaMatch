@@ -15,11 +15,10 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService : MoviesService) { }
 
   ngOnInit() {
-  //   this.moviesService.getMovies(10, 50)
-  //     .then((value) => {
-  //       this.movies = value['movies'];
-  //       console.log(this.movies);
-  //      });
+    this.moviesService.getMovies(10, 15)
+      .then((value) => {
+        this.movies = value['movies'];
+       });
   }
 
 }

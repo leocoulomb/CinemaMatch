@@ -16,7 +16,13 @@
 .allmovies{
   background-color: #0e0e0e;
   font-size: 62.5%;
+}
 
+.essaie{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 ::ng-deep  .main {
