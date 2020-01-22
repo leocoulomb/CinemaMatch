@@ -15,6 +15,9 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesComponent } from './movies/movies.component';
 import { CineteamComponent } from './cineteam/cineteam.component';
 import { LegalMentionComponent } from './legal-mention/legal-mention.component';
+import { SmartFilmsComponent } from './smart-films/smart-films.component';
+import { FilmMatchComponent } from './film-match/film-match.component';
+import { FilmCardComponent } from './film-card/film-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: ReceptionComponent },
@@ -23,7 +26,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cineteam', component: CineteamComponent },
   { path: 'legal-mention', component: LegalMentionComponent },
-  { path: 'movies', component: MoviesComponent }
+  { path: 'movies', component: MoviesComponent },
+  { path: 'smart-movies', component: SmartFilmsComponent },
 ];
 
 @NgModule({
@@ -38,7 +42,10 @@ const appRoutes: Routes = [
     MovieCardComponent,
     MoviesComponent,
     CineteamComponent,
-    LegalMentionComponent
+    LegalMentionComponent,
+    SmartFilmsComponent,
+    FilmMatchComponent,
+    FilmCardComponent,
   ],
   imports: [
     BrowserModule,
