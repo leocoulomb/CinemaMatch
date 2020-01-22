@@ -1,0 +1,11 @@
+<div class="tbg">
+    <div class="tbgwrap">
+        <app-film-match  [parentSubject]="parentSubject">
+        </app-film-match>
+        <div class="tcontrols">
+        <div (click)='onClick("like")'  class="tyes"><i class="fa fa-heart" aria-hidden="true"></i></div>
+        <div (click)='onClick("unseen")' class="truc"><i class="fa fa-eye-slash fa-2x" style="color:#DDDDDD" aria-hidden="true"></i></div>
+        <div (click)='onClick("dislike")' class="tno"><i class="fa fa-times" aria-hidden="true"></i></div>
+        </div>
+    </div>
+</div>
