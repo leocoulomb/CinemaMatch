@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 
 import { AppComponent } from './app.component';
 import { ReceptionComponent } from './reception/reception.component';
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

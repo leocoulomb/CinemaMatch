@@ -28,7 +28,7 @@
           </div>
         </div>
         <section id="movies">
-          <div *ngFor="let movie of movies">
+          <div *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }">
             <figure data-toggle="modal" data-target="#moviemodal">
               <img *ngIf="movie.poster" src="{{movie.poster}}">
               <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
@@ -43,6 +43,7 @@
             </figure>
           </div>
         </section>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
   </section>

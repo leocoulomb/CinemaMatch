@@ -11,7 +11,7 @@ import { Movie } from '../metier/movie';
 export class MoviesComponent implements OnInit {
 
   movies: Array<Movie>;
-
+  p: number = 1;
   constructor(private moviesService : MoviesService) { }
 
   ngOnInit() {
