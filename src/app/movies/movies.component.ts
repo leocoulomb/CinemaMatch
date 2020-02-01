@@ -17,7 +17,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
     this.moviesService.getMovies(10, 15)
       .then((value) => {
-        this.movies = value['movies'];
+        this.movies = this.moviesService.avgRating(value['movies']);
        });
   }
 

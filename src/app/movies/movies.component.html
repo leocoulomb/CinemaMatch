@@ -4,61 +4,45 @@
     <section class="logo"><b>A<span>ll</span>&nbsp;<span>M</span>ov<span>ie</span>s</b></section>
   </div>
 </div>
-  <section class="allmovies">
-    <div class="main">
-      <div class="test">
-        <ul class="options">
-          <li class="active">in theaters</li>
-          <li>coming soon</li>
-          <li>charts</li>
-          <li>tv series</li>
-          <li>trailers</li>
-          <li>more</li>
-        </ul>
-        <div id="forms">
-          <form id="range-form">
-            <p>IMDb Rating</p>
-            <div class="group">
-              <input type="range" step="0.1" min="0.0" max="10.0" id="range" value="6">
-              <p id="results">6</p>
-            </div>
-          </form>
-          <div id="search-input">
-            <input type="search" id="search" results="5" value=""><i class="fas fa-search"></i>
+<section class="allmovies">
+  <div class="main">
+    <div class="test">
+      <ul class="options">
+        <li class="active">Cherchez un film fait pour vous !</li>
+      </ul>
+      <div id="forms">
+        <form id="range-form">
+          <p>Ratings</p>
+          <div class="group">
+            <input type="range" step="0.1" min="0.0" max="10.0" id="range" value="6">
+            <p id="results">6</p>
           </div>
+        </form>
+        <div id="search-input">
+          <input type="search" id="search" results="5" value=""><i class="fas fa-search"></i>
         </div>
-        <section id="movies">
-          <div *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <figure data-toggle="modal" data-target="#moviemodal">
-              <img *ngIf="movie.poster" src="{{movie.poster}}">
-              <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
-              <figcaption>
-                <h5 class="essaie">{{movie.title}}</h5>
-                <p>{{movie.genres}}</p>
-                <div class="rating"><i class="fas fa-heart"></i>
-                  <h4 *ngIf="avgRatings">8.3</h4>
-                  <h4>N/A</h4>
-                </div>
-              </figcaption>
-            </figure>
-          </div>
-        </section>
+      </div>
+      <section id="movies">
+        <div *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }">
+          <figure data-toggle="modal" data-target="#moviemodal">
+            <img *ngIf="movie.poster" src="{{movie.poster}}">
+            <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
+            <figcaption>
+              <h5 class="essaie">{{movie.title}}</h5>
+              <p>{{movie.genres}}</p>
+              <div class="rating"><i class="fas fa-heart"></i>
+                <h4 *ngIf="movie.avgRatings">{{movie.avgRatings}}</h4>
+                <h4 *ngIf="!movie.avgRatings">N/A</h4>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <div id="pagination">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
-  </section>
-
-  <div class="modal fade" id="moviemodal" tabindex="-1" role="dialog" aria-labelledby="moviemodalTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-body">
-          ...
-        </div>
-      </div>
-    </div>
   </div>
+</section>
+<movie-modal></movie-modal>
 <app-footer></app-footer>

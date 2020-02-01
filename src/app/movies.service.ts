@@ -24,6 +24,23 @@ export class MoviesService {
     return this.communication.get(this.KW_url_viewed_movies, header);
   }
 
+  public avgRating(movies) {
+    let duplicateMovie = movies;
+    let i = 0;
+    duplicateMovie.forEach(element => {
+      if(element.ratings){
+        let sum = 0;
+        element.ratings.forEach(element => {
+          sum += element.value;
+        });
+        let a = 1;
+        movies[i]['avgRatings'] = ((sum / element.ratings.length) / 10).toFixed(1);
+      }
+      i++;
+    });
+    return movies;
+  }
+
   public getMovies(page, nbPerPage = 5) {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {

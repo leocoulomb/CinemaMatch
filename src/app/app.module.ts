@@ -19,6 +19,7 @@ import { LegalMentionComponent } from './legal-mention/legal-mention.component';
 import { SmartFilmsComponent } from './smart-films/smart-films.component';
 import { FilmMatchComponent } from './film-match/film-match.component';
 import { FilmCardComponent } from './film-card/film-card.component';
+import { MovieModalComponent } from './movie-modal/movie-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: ReceptionComponent },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     SmartFilmsComponent,
     FilmMatchComponent,
     FilmCardComponent,
+    MovieModalComponent,
   ],
   imports: [
     BrowserModule,
