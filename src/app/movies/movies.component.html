@@ -24,7 +24,7 @@
       </div>
       <section id="movies">
         <div *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }">
-          <figure data-toggle="modal" data-target="#moviemodal">
+          <figure (click)="showModal(movie)">
             <img *ngIf="movie.poster" src="{{movie.poster}}">
             <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
             <figcaption>
@@ -44,5 +44,7 @@
     </div>
   </div>
 </section>
-<movie-modal></movie-modal>
+<div>
+  <movie-modal [displayModal]="showVar" [movie]="selectedMovie" (displayModalChange)="this.showVar = $event"> </movie-modal>
+</div>
 <app-footer></app-footer>

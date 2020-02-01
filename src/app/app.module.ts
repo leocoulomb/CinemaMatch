@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'legal-mention', component: LegalMentionComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'smart-movies', component: SmartFilmsComponent },
+  { path: 'modale', component: MovieModalComponent },
 ];
 
 @NgModule({
