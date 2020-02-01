@@ -53,7 +53,7 @@
     /* box-shadow: 15px 3px 50px 2px lightgrey; //Modal dépassant un peu sur l'affiche */ 
     padding: 40px 40px 20px 40px;
     /* margin: 40px 50px 30px -60px; */
-    margin: 40px 0px 30px 0px;
+    // margin: 40px 0px 30px 0px;
 }
 
 .modal-movie-titre h1 {
@@ -68,8 +68,8 @@
 }
 
 .modal img {
-    width: 320px;
-    max-width: 320px;
+    width: 320px !important;
+    max-width: 325px;
     height: 538px;
     max-height: 538px;
     display: block;
@@ -101,7 +101,7 @@
     text-align: center;
     background: #f4f4f4;
     padding: 5px 0;
-    width: 70px;
+    width: 85px;
     margin: 0 5px;
     border-radius: 10px;
     color: #737373;

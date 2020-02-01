@@ -24,7 +24,6 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getMovies(10, 15)
       .then((value) => {
         this.movies = this.moviesService.avgRating(value['movies']);
-        console.log(this.movies);
       });
   }
 

@@ -12,26 +12,28 @@ import { Movie } from '../metier/movie';
 export class HomeComponent implements OnInit {
 
   rdmMovies: Array<Movie>;
+  selectedMovie: Movie;
+  showVar: boolean = false;
 
-  constructor(private session : SessionService, private router : Router, private moviesService : MoviesService) { }
+  constructor(private session: SessionService, private router: Router, private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.loadScript('../assets/js/slick.min.js');
     this.loadScript('../assets/js/slider.js');
-    
-    this.session.preconnect()
-    .then((response) => {
-      
-    })
-    .catch((error) => {
-      console.log('try to access home but could not preconnect');
-      this.router.navigateByUrl('/');  
-    });
 
-    this.moviesService.getRandomMovie(8,["poster"])
-    .then((value) => {
-      this.rdmMovies = value['movies'];
-     });
+    this.session.preconnect()
+      .then((response) => {
+
+      })
+      .catch((error) => {
+        console.log('try to access home but could not preconnect');
+        this.router.navigateByUrl('/');
+      });
+
+    this.moviesService.getRandomMovie(8, ["poster"])
+      .then((value) => {
+        this.rdmMovies = value['movies'];
+      });
   }
   public loadScript(url: string) {
     const body = <HTMLDivElement>document.body;
@@ -41,6 +43,14 @@ export class HomeComponent implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+
+  showModal(movie_id) {
+    this.moviesService.getMovie(movie_id)
+      .then((value) => {
+        this.selectedMovie = value['movie'];
+        this.showVar = true;
+      });
   }
 
 }

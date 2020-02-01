@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './utils/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './utils/footer/footer.component';
-import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesComponent } from './movies/movies.component';
 import { CineteamComponent } from './cineteam/cineteam.component';
 import { LegalMentionComponent } from './legal-mention/legal-mention.component';
@@ -42,7 +41,6 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     FooterComponent,
-    MovieCardComponent,
     MoviesComponent,
     CineteamComponent,
     LegalMentionComponent,

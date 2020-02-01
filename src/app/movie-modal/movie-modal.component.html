@@ -2,13 +2,13 @@
     <div class="modal-content">
         <div class="modal-container" style="display:flex;">
             <span class="close-modal" (click)="hideModal()">&times;</span>
+            <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg" style="width: 500px;">
             <img *ngIf="movie.poster" src="{{movie.poster}}">
-            <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
             <div>
                 <div class="modal-movie-titre">
                     <h1>{{movie.title}}</h1>
                     <div class="modal-genre">
-                        <p class="genre">{{movie.genres}}</p>
+                        <p class="genre">{{movie.genres.join(', ')}}</p>
                         <span *ngIf="movie.rated" class="rated">{{movie.rated}}</span>
                         <span *ngIf="!movie.rated" class="rated">N/A</span>
                         <span *ngIf="movie.runtime" class="duration">{{movie.runtime}} min</span>
@@ -42,8 +42,8 @@
                 <p *ngIf="!movie.plot" class="movie-description">Aucune description n'est disponnible pour ce film.</p>
                 <a href="#">Voir plus</a>
                 <div class="modal-buttons">
-                    <button>Watch trailer<i class="fa fa-caret-right"></i></button>
-                    <button>to watchlist<i class="fa fa-star"></i></button>
+                    <button>Like <i class="fas fa-heart"></i></button>
+                    <button>View <i class="fas fa-eye"></i></button>
                 </div>
             </div>
         </div>

@@ -11,28 +11,25 @@
         <div class="carousel-item active">
             <img src="../../assets/img/carousel/tron_legacy_poster.jpg" class="d-block w-100" alt="Affiche film">
             <div class="carousel-caption d-none d-md-block">
-                <button type="button" class="btn btn-warning"
+                <button type="button" (click)="showModal('5dcfb6ecfb30a6da7a68a8cb')" class="btn btn-warning"
                     style="border-radius:20px; font-size:20px; opacity:0.85;">Consulter <i
                         class="fas fa-info-circle"></i></button>
-                         <!-- 5dcfb6ecfb30a6da7a68a8cb -->
             </div>
         </div>
         <div class="carousel-item">
             <img src="../../assets/img/carousel/wrath.jpg" class="d-block w-100" alt="Affiche film">
             <div class="carousel-caption d-none d-md-block">
-                <button type="button" class="btn btn-warning"
+                <button (click)="showModal('5dcfbfecfb30a6da7a69612e')" type="button" class="btn btn-warning"
                     style="border-radius:20px; font-size:20px; opacity:0.85;">Consulter <i
                         class="fas fa-info-circle"></i></button>
-                        <!-- 5dcfbfecfb30a6da7a69612e -->
             </div>
         </div>
         <div class="carousel-item">
             <img src="../../assets/img/carousel/Deadpool.jpg" class="d-block w-100" alt="Affiche film">
             <div class="carousel-caption d-none d-md-block">
-                <button type="button" class="btn btn-warning"
+                <button type="button" class="btn btn-warning" (click)="showModal('5dcfb5ddfb30a6da7a686f9b')"
                     style="border-radius:20px; font-size:20px; opacity:0.85;">Consulter <i 
                         class="fas fa-info-circle"></i></button>
-                <!-- 5dcfb5ddfb30a6da7a686f9b  -->
 
             </div>
         </div>
@@ -41,9 +38,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <button type="button" class="btn btn-warning"
                     style="border-radius:20px; font-size:20px; opacity:0.85;">Consulter <i
-                        class="fas fa-info-circle"></i></button>
-                <!-- 5dcfb56ffb30a6da7a684b11 -->
-
+                        class="fas fa-info-circle" (click)="showModal('5dcfb56ffb30a6da7a684b11')"></i></button>
             </div>
         </div>
     </div>
@@ -72,5 +67,8 @@
             <img src="../../assets/img/random/Joker.jpg" alt="Affiche film" class="slackslide">
         </div>
     </div>
+</div>
+<div>
+    <movie-modal [displayModal]="showVar" [movie]="selectedMovie" (displayModalChange)="this.showVar = $event"> </movie-modal>
 </div>
 <app-footer></app-footer>
