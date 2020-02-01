@@ -57,14 +57,7 @@
     <hr>
     <div class="slideContainer">
         <div class="ImageSlick">
-            <img src="../../assets/img/random/John.jpg" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Fight.png" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Atomic.png" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Joker.jpg" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/John.jpg" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Fight.png" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Atomic.png" alt="Affiche film" class="slackslide">
-            <img src="../../assets/img/random/Joker.jpg" alt="Affiche film" class="slackslide">
+            <img *ngFor="let movie of rdmMovies" (click)=showModal(movie._id) src="{{movie.poster}}" alt="Affiche film" class="slackslide">
         </div>
     </div>
 </div>

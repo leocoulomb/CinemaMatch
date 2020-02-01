@@ -14,12 +14,11 @@ export class HomeComponent implements OnInit {
   rdmMovies: Array<Movie>;
   selectedMovie: Movie;
   showVar: boolean = false;
+  movieLoaded : boolean = false;
 
   constructor(private session: SessionService, private router: Router, private moviesService: MoviesService) { }
 
   ngOnInit() {
-    this.loadScript('../assets/js/slick.min.js');
-    this.loadScript('../assets/js/slider.js');
 
     this.session.preconnect()
       .then((response) => {
@@ -32,7 +31,9 @@ export class HomeComponent implements OnInit {
 
     this.moviesService.getRandomMovie(8, ["poster"])
       .then((value) => {
-        this.rdmMovies = value['movies'];
+        this.rdmMovies = (<Array<Movie>>value);
+        this.loadScript('../assets/js/slick.min.js');
+        this.loadScript('../assets/js/slider.js');
       });
   }
   public loadScript(url: string) {
@@ -50,6 +51,7 @@ export class HomeComponent implements OnInit {
       .then((value) => {
         this.selectedMovie = value['movie'];
         this.showVar = true;
+        
       });
   }
 
