@@ -25,6 +25,12 @@
   -webkit-box-orient: vertical;
 }
 
+::ng-deep hr {
+  height: 2px;
+  background-color: #f90;
+  margin-bottom: 4rem;
+}
+
 ::ng-deep  .main {
   width: 1100px;
     background: whitesmoke;

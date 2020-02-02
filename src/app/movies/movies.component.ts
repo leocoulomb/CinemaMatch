@@ -25,11 +25,11 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
-    this.moviesService.getRandomMovie(50) //.getMovies(10, 15)
+    this.moviesService.getMovies(10, 15) // getRandomMovie(50)
       .then((value) => {
-        this.movies = this.moviesService.avgRating(value);
+        this.movies = this.moviesService.avgRating(value['movies']);
       });
-   
+
   }
 
   showModal(movie) {
@@ -38,16 +38,13 @@ export class MoviesComponent implements OnInit {
 
     this.moviesService.getIsLikedMovie(movie._id)
       .then((value) => {
-        console.log(value);
+        this.isLiked = value['liked'];
+        this.isViewed = value['viewed'];
+        this.showVar = true;
+        this.selectedMovie = movie;
       })
       .catch((error) => {
       })
-    // this.movieViewed.forEach(element => {
-    //   if (movie._id == element._id)
-    //     this.isViewed = true;
-    // });
-    // this.showVar = true;
-    // this.selectedMovie = movie;
   }
 
 }

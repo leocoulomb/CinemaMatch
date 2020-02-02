@@ -20,13 +20,7 @@ export class MovieModalComponent implements OnInit {
   constructor(private movieService: MoviesService) { }
 
   ngOnInit() {
-    // this.movieService.getViewedMovies()
-    //   .then((value) => {
-    //     console.log(value);
-    //     this.movieViewed = value['moviesViewed'];
-    //   })
-    //   .catch((error) => {
-    //   })
+
   }
 
   hideModal() {
@@ -34,26 +28,27 @@ export class MovieModalComponent implements OnInit {
   }
 
   toggleView(movie_id) {
-    // this.movieService.swapView(movie_id)
-    // .then((value) => {
-    //   console.log(value);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    this.isViewed = !this.isViewed;
+    this.movieService.swapView(movie_id)
+      .then((value) => {
+        this.isViewed = !this.isViewed;
+        if (!this.isViewed)
+          this.isLiked = false;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
   }
 
   toggleLike(movie_id) {
-    // this.movieService.swapLike(movie_id)
-    //   .then((value) => {
-    //       console.log(value);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    this.isLiked = !this.isLiked;
+    this.movieService.swapLike(movie_id)
+      .then((value) => {
+        this.isLiked = !this.isLiked;
+        if (this.isLiked)
+          this.isViewed = true;
+      })
+      .catch((error) => {
+      });
   }
 
 }
