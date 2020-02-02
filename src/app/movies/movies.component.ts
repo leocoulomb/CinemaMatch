@@ -22,14 +22,15 @@ export class MoviesComponent implements OnInit {
 
   @Output() movie: Movie;
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService) { 
+    
+  }
 
   ngOnInit() {
     this.moviesService.getMovies(10, 15) // getRandomMovie(50)
       .then((value) => {
         this.movies = this.moviesService.avgRating(value['movies']);
       });
-
   }
 
   showModal(movie) {
@@ -47,4 +48,13 @@ export class MoviesComponent implements OnInit {
       })
   }
 
+  searchMovie(query) {
+  //   if (query.length < 4)
+  //     return;
+  //   this.moviesService.getMovieByTitle(query).then((value) => {
+  //   })
+  //     .catch((error) => {
+
+  //     })
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs';
+import { MoviesService } from '../movies.service';
+import { Movie } from '../metier/movie';
 
 @Component({
   selector: 'app-smart-films',
@@ -9,14 +11,36 @@ import { Subject } from 'rxjs';
 })
 export class SmartFilmsComponent implements OnInit {
 
-  public parentSubject: Subject<string> = new Subject();
+  movies : Array<Movie>;
+  isLiked: boolean;
+  isViewed: boolean;
+  showVar: boolean = false;
+  selectedMovie: Movie;
 
-  constructor() { }
+  constructor(private moviesService : MoviesService) { }
+
 
   ngOnInit() {
+    this.moviesService.generateMovieList() // getRandomMovie(50)
+      .then((value) => {
+        console.log(value);
+        this.movies = this.moviesService.avgRating(value['movies']);
+        console.log(this.movies);
+      });
   }
 
-  onClick(status) {
-    this.parentSubject.next(status);
+  showModal(movie) {
+    this.isLiked = false;
+    this.isViewed = false;
+
+    this.moviesService.getIsLikedMovie(movie._id)
+      .then((value) => {
+        this.isLiked = value['liked'];
+        this.isViewed = value['viewed'];
+        this.showVar = true;
+        this.selectedMovie = movie;
+      })
+      .catch((error) => {
+      })
   }
 }

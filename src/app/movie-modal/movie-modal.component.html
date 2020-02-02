@@ -24,7 +24,7 @@
                         </div>
                         <div class="score">
                             <div><i class="fas fa-thumbs-up"></i>
-                                <h4 *ngIf="movie.score">{{movie.score}}</h4>
+                                <h4 *ngIf="movie.score">{{movie.score.toFixed(1)}}</h4>
                                 <h4 *ngIf="!movie.score">N/A</h4>
                             </div>
                             <p>Score</p>
@@ -40,7 +40,7 @@
                 </div>
                 <p *ngIf="movie.plot" class="movie-description">{{movie.plot}}</p>
                 <p *ngIf="!movie.plot" class="movie-description">Aucune description n'est disponnible pour ce film.</p>
-                <a href="#">Voir plus</a>
+                <a *ngIf="movie.imdbid" target="_blank" href="https://www.imdb.com/title/{{movie.imdbid}}/">Voir plus</a>
                 <div class="modal-buttons">
                     <button (click)="toggleLike(movie._id)">Like <i *ngIf="isLiked" class="fas fa-heart"></i><i
                             *ngIf="!isLiked" class="far fa-heart"></i></button>

@@ -19,11 +19,11 @@
           </div>
         </form>
         <div id="search-input">
-          <input type="search" id="search" results="5" value=""><i class="fas fa-search"></i>
+          <input type="search"  [(ngModel)]="search" (ngModelChange)="searchMovie($event)" id="search" results="5" value=""><i class="fas fa-search"></i>
         </div>
       </div>
       <section id="movies">
-        <div *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }">
+        <div *ngFor="let movie of movies | paginate: { itemsPerPage: 15, currentPage: p }"> <!--  -->
           <figure (click)="showModal(movie)">
             <img *ngIf="movie.poster" src="{{movie.poster}}">
             <img *ngIf="!movie.poster" src="../../assets/img/abstract-image.jpg">
