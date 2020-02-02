@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
     this.moviesService.getRandomMovie(8, ["poster"])
       .then((value) => {
-        this.rdmMovies = (<Array<Movie>>value);
+        this.rdmMovies = <Array<Movie>>value;
         this.loadScript('../assets/js/slick.min.js');
         this.loadScript('../assets/js/slider.js');
       });

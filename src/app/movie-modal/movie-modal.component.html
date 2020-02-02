@@ -42,8 +42,10 @@
                 <p *ngIf="!movie.plot" class="movie-description">Aucune description n'est disponnible pour ce film.</p>
                 <a href="#">Voir plus</a>
                 <div class="modal-buttons">
-                    <button>Like <i class="fas fa-heart"></i></button>
-                    <button>View <i class="fas fa-eye"></i></button>
+                    <button (click)="toggleLike(movie._id)">Like <i *ngIf="isLiked" class="fas fa-heart"></i><i
+                            *ngIf="!isLiked" class="far fa-heart"></i></button>
+                    <button (click)="toggleView(movie._id)">View <i *ngIf="isViewed" class="fas fa-eye"></i><i
+                            *ngIf="!isViewed" class="far fa-eye-slash"></i></button>
                 </div>
             </div>
         </div>

@@ -15,7 +15,9 @@ export class MoviesService {
   readonly KW_url_random = this.KW_url + "/random";
 
   readonly KW_url_swap_like = this.KW_url + "/liked";
+  readonly KW_url_is_liked = this.KW_url + "/liked/";
   readonly KW_url_swap_view = this.KW_url + "/changeView";
+
 
   constructor(private communication: CommunicationService, private sessionService: SessionService) { }
 
@@ -23,6 +25,8 @@ export class MoviesService {
     const header = this.sessionService.buildAuthentificationHeader();
     return this.communication.get(this.KW_url_viewed_movies, header);
   }
+
+
 
   public avgRating(movies) {
     let duplicateMovie = movies;
@@ -39,6 +43,19 @@ export class MoviesService {
       i++;
     });
     return movies;
+  }
+
+  public getIsLikedMovie(id) {
+    const header = this.sessionService.buildAuthentificationHeader();
+    return new Promise((resolve, reject) => {
+      this.communication.get(this.KW_url_is_liked + id, header)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 
   public getMovies(page, nbPerPage = 5) {
