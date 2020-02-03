@@ -19,21 +19,24 @@ export class MoviesComponent implements OnInit {
   movieViewed: Array<Movie>;
   isLiked: boolean;
   isViewed: boolean;
+  range : number;
 
   @Output() movie: Movie;
 
   constructor(private moviesService: MoviesService) { 
-    
+    this.loadMovie(150);
   }
 
   ngOnInit() {
-    this.moviesService.getMovies(10, 15) // getRandomMovie(50)
-      .then((value) => {
-        this.movies = this.moviesService.avgRating(value['movies']);
-      });
+    this.range = 5;
+  }
+
+  loadMovie(nb=15){
+    this.moviesService.getMovies(10, nb).subscribe(value => this.movies = this.moviesService.avgRating(value['movies']));
   }
 
   showModal(movie) {
+
     this.isLiked = false;
     this.isViewed = false;
 
@@ -49,12 +52,18 @@ export class MoviesComponent implements OnInit {
   }
 
   searchMovie(query) {
-  //   if (query.length < 4)
-  //     return;
-  //   this.moviesService.getMovieByTitle(query).then((value) => {
-  //   })
-  //     .catch((error) => {
+    if (query.length < 4){
+      this.loadMovie(150);
+      return;
+    }
+    this.moviesService.getMovieByTitle(query).subscribe((value) => {
+      this.movies = this.moviesService.avgRating(value['movies']);
+    })
+  }
 
-  //     })
+
+  slide(event){
+    let slideValue = event.target.value;
+    //Traitement lors du slide
   }
 }
