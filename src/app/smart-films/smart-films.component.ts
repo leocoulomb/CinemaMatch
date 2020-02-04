@@ -25,12 +25,7 @@ export class SmartFilmsComponent implements OnInit {
   ngOnInit() {
     this.session.preconnect()
     .then((response) => {
-      this.moviesService.generateMovieList() // getRandomMovie(50)
-      .then((value) => {
-        console.log(value);
-        this.movies = this.moviesService.avgRating(value['movies']);
-        console.log(this.movies);
-      });
+      
     })
     .catch((error) => {
       console.log('try to access home but could not preconnect');
@@ -38,7 +33,12 @@ export class SmartFilmsComponent implements OnInit {
       this.router.navigateByUrl('/');  
     });
 
-    
+    this.moviesService.generateMovieList() // getRandomMovie(50)
+    .then((value) => {
+      console.log(value);
+      this.movies = this.moviesService.avgRating(value['movies']);
+      console.log(this.movies);
+    });
   }
 
   showModal(movie) {
