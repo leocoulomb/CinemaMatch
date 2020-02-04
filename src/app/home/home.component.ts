@@ -19,12 +19,20 @@ export class HomeComponent implements OnInit {
   constructor(private session: SessionService, private router: Router, private moviesService: MoviesService) { }
 
   ngOnInit() {
-    this.moviesService.getRandomMovie(8, ["poster"])
+    this.session.preconnect()
+    .then((response) => {
+      this.moviesService.getRandomMovie(8, ["poster"])
       .then((value) => {
         this.rdmMovies = <Array<Movie>>value;
         this.loadScript('../assets/js/slick.min.js');
         this.loadScript('../assets/js/slider.js');
       });
+    })
+    .catch((error) => {
+      console.log('try to access home but could not preconnect');
+      console.log(error);
+      this.router.navigateByUrl('/');  
+    });
   }
   public loadScript(url: string) {
     const body = <HTMLDivElement>document.body;
