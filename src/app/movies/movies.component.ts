@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { MoviesService } from '../movies.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { __values } from 'tslib';
 import { Movie } from '../metier/movie';
 import { SessionService } from '../session.service';
@@ -20,30 +20,36 @@ export class MoviesComponent implements OnInit {
   movieViewed: Array<Movie>;
   isLiked: boolean;
   isViewed: boolean;
-  range : number;
+  range: number;
+  gender: string;
 
   @Output() movie: Movie;
 
-  constructor(private session : SessionService, private router : Router, private moviesService: MoviesService) { 
-    this.loadMovie(150);
+  constructor(private route: ActivatedRoute, private session: SessionService, private router: Router, private moviesService: MoviesService) {
+    route.params.subscribe(val => {
+      this.route.snapshot.paramMap.get('gender') == 'all' ? this.gender = null : this.gender = this.route.snapshot.paramMap.get('gender')
+      this.loadMovie(15, this.gender);
+
+    });
   }
 
   ngOnInit() {
     this.session.preconnect()
-    .then((response) => {
-      
-    })
-    .catch((error) => {
-      console.log('try to access home but could not preconnect');
-      console.log(error);
-      this.router.navigateByUrl('/');  
-    });
+      .then((response) => {
 
+      })
+      .catch((error) => {
+        console.log('try to access home but could not preconnect');
+        console.log(error);
+        this.router.navigateByUrl('/');
+      });
     this.range = 5;
+
+
   }
 
-  loadMovie(nb=15){
-    this.moviesService.getMovies(10, nb).subscribe(value => this.movies = this.moviesService.avgRating(value['movies']));
+  loadMovie(nb = 15, gender) {
+    this.moviesService.getMovies(10, nb, gender).subscribe(value => this.movies = this.moviesService.avgRating(value['movies']));
   }
 
   showModal(movie) {
@@ -63,8 +69,8 @@ export class MoviesComponent implements OnInit {
   }
 
   searchMovie(query) {
-    if (query.length < 4){
-      this.loadMovie(150);
+    if (query.length < 4) {
+      this.loadMovie(150,null);
       return;
     }
     this.moviesService.getMovieByTitle(query).subscribe((value) => {
@@ -73,7 +79,7 @@ export class MoviesComponent implements OnInit {
   }
 
 
-  slide(event){
+  slide(event) {
     let slideValue = event.target.value;
     //Traitement lors du slide
   }

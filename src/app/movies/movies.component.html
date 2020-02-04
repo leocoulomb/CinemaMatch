@@ -8,7 +8,13 @@
   <div class="main">
     <div class="test">
       <ul class="options">
-        <li class="active">Cherchez un film fait pour vous !</li>
+        <li routerLink="/movies/all" [routerLinkActive]="['active']" >All gender</li>
+        <li routerLink="/movies/Action" [routerLinkActive]="['active']" class="">Action</li>
+        <li routerLink="/movies/Thriller" [routerLinkActive]="['active']" class="">Thriller</li>
+        <li routerLink="/movies/Family" [routerLinkActive]="['active']" class="">Family</li>
+        <li routerLink="/movies/Comedy" [routerLinkActive]="['active']" class="">Comedy</li>
+        <li routerLink="/movies/Animation" [routerLinkActive]="['active']" class="">Animation</li>
+        <li routerLink="/movies/Drama" [routerLinkActive]="['active']" class="">Drama</li>
       </ul>
       <div id="forms">
         <form id="range-form">

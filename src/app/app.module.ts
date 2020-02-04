@@ -27,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cineteam', component: CineteamComponent },
   { path: 'legal-mention', component: LegalMentionComponent },
-  { path: 'movies', component: MoviesComponent },
+  // { path: 'movies', component: MoviesComponent },
+  { path: 'movies/:gender', component: MoviesComponent },
   { path: 'smart-movies', component: SmartFilmsComponent },
   { path: 'modale', component: MovieModalComponent },
 ];

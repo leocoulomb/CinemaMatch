@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { CommunicationService } from './communication.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Movie } from './metier/movie';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -95,12 +95,16 @@ export class MoviesService {
   }
 
   //WITH OBSERVABLE  
-  public getMovies(page, nbPerPage = 5): Observable<Movie[]> {
+  public getMovies(page, nbPerPage = 5, gender=null): Observable<Movie[]> {
     const header = { headers : new HttpHeaders (this.sessionService.buildAuthentificationHeader())};
     let url = this.KW_url_movies_pages + "?";
     url += "nbPerPage=" + nbPerPage;
     url += "&";
     url += "page=" + page;
+    if(gender != null)
+      url += "&genre=" + gender;
+    console.log("url : " + url);
+    console.log("gender : " + gender);
     return this.http.get<Movie[]>(url, header);
   }
 
