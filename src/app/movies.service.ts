@@ -103,8 +103,6 @@ export class MoviesService {
     url += "page=" + page;
     if(gender != null)
       url += "&genre=" + gender;
-    console.log("url : " + url);
-    console.log("gender : " + gender);
     return this.http.get<Movie[]>(url, header);
   }
 
