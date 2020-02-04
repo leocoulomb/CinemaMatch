@@ -12,15 +12,15 @@ export class CineteamComponent implements OnInit {
   constructor(private session : SessionService, private router : Router) { }
 
   ngOnInit() {
-    this.session.preconnect()
-    .then((response) => {
+    // this.session.preconnect()
+    // .then((response) => {
       
-    })
-    .catch((error) => {
-      console.log('try to access home but could not preconnect');
-      console.log(error);
-      this.router.navigateByUrl('/');  
-    });
+    // })
+    // .catch((error) => {
+    //   console.log('try to access home but could not preconnect');
+    //   console.log(error);
+    //   this.router.navigateByUrl('/');  
+    // });
   }
 
 }
