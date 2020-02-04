@@ -3,6 +3,7 @@ import { MoviesService } from '../movies.service';
 import { Router } from '@angular/router';
 import { __values } from 'tslib';
 import { Movie } from '../metier/movie';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-movies',
@@ -23,11 +24,21 @@ export class MoviesComponent implements OnInit {
 
   @Output() movie: Movie;
 
-  constructor(private moviesService: MoviesService) { 
+  constructor(private session : SessionService, private router : Router, private moviesService: MoviesService) { 
     this.loadMovie(150);
   }
 
   ngOnInit() {
+    this.session.preconnect()
+    .then((response) => {
+      
+    })
+    .catch((error) => {
+      console.log('try to access home but could not preconnect');
+      console.log(error);
+      this.router.navigateByUrl('/');  
+    });
+
     this.range = 5;
   }
 

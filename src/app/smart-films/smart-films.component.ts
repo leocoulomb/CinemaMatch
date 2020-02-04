@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MoviesService } from '../movies.service';
 import { Movie } from '../metier/movie';
+import { SessionService } from '../session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-smart-films',
@@ -17,16 +19,26 @@ export class SmartFilmsComponent implements OnInit {
   showVar: boolean = false;
   selectedMovie: Movie;
 
-  constructor(private moviesService : MoviesService) { }
+  constructor(private router : Router, private session : SessionService, private moviesService : MoviesService) { }
 
 
   ngOnInit() {
-    this.moviesService.generateMovieList() // getRandomMovie(50)
+    this.session.preconnect()
+    .then((response) => {
+      this.moviesService.generateMovieList() // getRandomMovie(50)
       .then((value) => {
         console.log(value);
         this.movies = this.moviesService.avgRating(value['movies']);
         console.log(this.movies);
       });
+    })
+    .catch((error) => {
+      console.log('try to access home but could not preconnect');
+      console.log(error);
+      this.router.navigateByUrl('/');  
+    });
+
+    
   }
 
   showModal(movie) {
