@@ -19,6 +19,7 @@ import { SmartFilmsComponent } from './smart-films/smart-films.component';
 import { FilmMatchComponent } from './film-match/film-match.component';
 import { FilmCardComponent } from './film-card/film-card.component';
 import { MovieModalComponent } from './movie-modal/movie-modal.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const appRoutes: Routes = [
   { path: '', component: ReceptionComponent },
@@ -27,9 +28,10 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cineteam', component: CineteamComponent },
   { path: 'legal-mention', component: LegalMentionComponent },
-  { path: 'movies', component: MoviesComponent },
+  // { path: 'movies', component: MoviesComponent },
+  { path: 'movies/:gender', component: MoviesComponent },
   { path: 'smart-movies', component: SmartFilmsComponent },
-  { path: 'modale', component: MovieModalComponent },
+  { path: 'profil', component: ProfilComponent },
 ];
 
 @NgModule({
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     FilmMatchComponent,
     FilmCardComponent,
     MovieModalComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

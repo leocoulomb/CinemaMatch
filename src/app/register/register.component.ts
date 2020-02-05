@@ -71,7 +71,8 @@ export class RegisterComponent implements OnInit {
   validateSub() {
     this.session.register(this.angForm.value.name, this.angForm.value.email, this.angForm.value.password)
       .then(() => {
-        this.router.navigateByUrl('/home');
+        window.location.pathname = '/home';
+        // this.router.navigateByUrl('/home');
       })
       .catch(() => {
         console.log('failed');
