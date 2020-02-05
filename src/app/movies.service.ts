@@ -29,14 +29,18 @@ export class MoviesService {
 
   constructor(private communication: CommunicationService, private sessionService: SessionService, private http: HttpClient) { }
 
+  /**
+   * Movie viewed by the current user
+   */
   public getViewedMovies() {
     const header = this.sessionService.buildAuthentificationHeader();
     return this.communication.get(this.KW_url_viewed_movies, header);
   }
 
-
-
-  //WITH OBSERVABLE  
+  /**
+   * Movie list based on title (for search bar)
+   * @param query 
+   */  
   public getMovieByTitle(query): Observable<Movie[]> {
     const header = { headers: new HttpHeaders(this.sessionService.buildAuthentificationHeader()) };
     let url = this.KW_url_ajax;
@@ -46,7 +50,7 @@ export class MoviesService {
     return this.http.post<Movie[]>(url, body, header);
   }
 
-//WITH PROMISE
+  //WITH PROMISE (SHOULD NOT BE USED)
   // public getMovieByTitle(query) {
   //   const header = this.sessionService.buildAuthentificationHeader();
   //   const body = {
@@ -63,7 +67,10 @@ export class MoviesService {
   //   });
   // }
 
-
+  /**
+   * Get average movies
+   * @param movies 
+   */
   public avgRating(movies) {
     let duplicateMovie = movies;
     let i = 0;
@@ -81,6 +88,10 @@ export class MoviesService {
     return movies;
   }
 
+  /**
+   * Get like movies by the current user
+   * @param id 
+   */
   public getIsLikedMovie(id) {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
@@ -94,7 +105,12 @@ export class MoviesService {
     });
   }
 
-  //WITH OBSERVABLE  
+  /**
+   * Get a movie list based a selector
+   * @param page page count
+   * @param nbPerPage movie per page
+   * @param gender 
+   */ 
   public getMovies(page, nbPerPage = 5, gender=null): Observable<Movie[]> {
     const header = { headers : new HttpHeaders (this.sessionService.buildAuthentificationHeader())};
     let url = this.KW_url_movies_pages + "?";
@@ -106,7 +122,7 @@ export class MoviesService {
     return this.http.get<Movie[]>(url, header);
   }
 
-// WITH PROMISE
+  // WITH PROMISE (SHOULD NO LONGER BE USED)
   // public getMovies(page, nbPerPage = 5) {
   //   const header = this.sessionService.buildAuthentificationHeader();
   //   return new Promise((resolve, reject) => {
@@ -124,6 +140,10 @@ export class MoviesService {
   //   });
   // }
 
+  /**
+   * Return movie information using its id (from server database)
+   * @param id 
+   */
   public getMovie(id) {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
@@ -137,6 +157,11 @@ export class MoviesService {
     });
   }
 
+  /**
+   * Generate movie list
+   * @param count movies generated
+   * @param fields which information to include in the movie information
+   */
   public getRandomMovie(count, fields = []) {
     const header = this.sessionService.buildAuthentificationHeader();
     const body = {
@@ -154,8 +179,9 @@ export class MoviesService {
     });
   }
 
-
-  
+  /**
+   * Create custom movie list for the current user
+   */
   public generateMovieList() {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
@@ -169,8 +195,10 @@ export class MoviesService {
     });
   }
 
-
-
+  /**
+   * Like or dislike a movie
+   * @param id 
+   */
   public swapLike(id) {
     const header = this.sessionService.buildAuthentificationHeader();
     const body = {
@@ -189,6 +217,10 @@ export class MoviesService {
     });
   }
 
+  /**
+   * View or unview a movie
+   * @param id 
+   */
   public swapView(id) {
     const header = this.sessionService.buildAuthentificationHeader();
     const body = {
