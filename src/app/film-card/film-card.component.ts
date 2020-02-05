@@ -17,6 +17,7 @@ export class FilmCardComponent implements OnInit {
 
   ngOnInit() {
 
+    // Ensure movie is existing
     if (this.movie == null){
       return;
     }
