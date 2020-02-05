@@ -10,6 +10,12 @@ export class CommunicationService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Factorization function for post api request.
+   * @param url 
+   * @param header 
+   * @param body 
+   */
   public post(url, header, body) {
     const httpHeader = new HttpHeaders(header);
     return new Promise((resolve, reject) => {
@@ -28,6 +34,11 @@ export class CommunicationService {
     });
   }
 
+  /**
+   * Factorization function for get api request.
+   * @param url 
+   * @param header 
+   */
   public get(url, header) {
     const httpHeader = new HttpHeaders(header);
     return new Promise((resolve, reject) => {
@@ -46,6 +57,11 @@ export class CommunicationService {
     });
   }
 
+  /**
+   * Factorization function for delete api request.
+   * @param url 
+   * @param header 
+   */
   public delete(url, header) {
     const httpHeader = new HttpHeaders(header);
     return new Promise((resolve, reject) => {
