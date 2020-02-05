@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogOut() {
-    console.log('test')
     this.session.disconnect();
     this.router.navigateByUrl('/');
   }

@@ -29,20 +29,10 @@ export class MoviesComponent implements OnInit {
     route.params.subscribe(val => {
       this.route.snapshot.paramMap.get('gender') == 'all' ? this.gender = null : this.gender = this.route.snapshot.paramMap.get('gender')
       this.loadMovie(150, this.gender);
-      console.log('hello');
     });
   }
 
   ngOnInit() {
-    this.session.preconnect()
-      .then((response) => {
-
-      })
-      .catch((error) => {
-        // console.log('try to access home but could not preconnect');
-        // console.log(error);
-        // this.router.navigateByUrl('/');
-      });
     this.route.params.subscribe(val => {
       this.route.snapshot.paramMap.get('gender') == 'all' ? this.gender = null : this.gender = this.route.snapshot.paramMap.get('gender')
       this.loadMovie(150, this.gender);
@@ -74,7 +64,7 @@ export class MoviesComponent implements OnInit {
 
   searchMovie(query) {
     if (query.length < 4) {
-      this.loadMovie(150,null);
+      this.loadMovie(150, null);
       return;
     }
     this.moviesService.getMovieByTitle(query).subscribe((value) => {
