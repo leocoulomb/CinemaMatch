@@ -25,12 +25,19 @@ export class SessionService {
     
   }
 
+  /**
+   * Helper function
+   */
   public buildAuthentificationHeader() {
     return {
       'Authorization': "bearer " + this.getToken()
     };
   }
 
+  /**
+   * Try to connect a user based on the previously saved token.
+   * Important to keep coherency between pages.
+   */
   public preconnect() {
     return new Promise((resolve, reject) => {
       let token = localStorage.getItem(this.KW_token);
@@ -51,6 +58,11 @@ export class SessionService {
     });
   }
 
+  /**
+   * Connect one user
+   * @param email 
+   * @param password 
+   */
   public connect(email, password) {
     const body = {
       'email': email,
@@ -71,6 +83,12 @@ export class SessionService {
     });
   }
 
+  /**
+   * Create new user
+   * @param username 
+   * @param email 
+   * @param password 
+   */
   public register(username, email, password) {
 
     const body = {
@@ -93,6 +111,9 @@ export class SessionService {
     });
   }
 
+  /**
+   * Delete current user
+   */
   public delete() {
     const header = this.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {
@@ -107,22 +128,41 @@ export class SessionService {
     });
   }
 
+  /**
+   * Update current user name
+   * @param newName 
+   */
   public updateName(newName) {
     return this.update('name', newName, 'name', (value) => {
       this.setUsername(value);
     });
   }
+  /**
+   * Update current user email
+   * @param newEmail 
+   */
   public updateEmail(newEmail) {
     return this.update('email', newEmail, 'email', (value) => {
       this.setEmail(value);
     });
   }
+  /**
+   * Update current user password
+   * @param newPassword 
+   */
   public updatePassword(newPassword) {
     return this.update('password', Md5.hashStr(newPassword), 'password', (value) => {
       // Le mot de passe n'est pas stocké en local, inutile de le changer
     });
   }
 
+  /**
+   * Update server side user information
+   * @param param 
+   * @param value 
+   * @param paramName 
+   * @param call 
+   */
   private update(param, value, paramName, call) {
     return new Promise((resolve, reject) => {
       let token = localStorage.getItem(this.KW_token);
@@ -150,33 +190,60 @@ export class SessionService {
     });
   }
 
+  /**
+   * Remove the token and user informations for local storage
+   */
   public disconnect() {
     localStorage.removeItem(this.KW_token);
     localStorage.removeItem(this.KW_username);
     localStorage.removeItem(this.KW_email);
   }
 
+  /**
+   * Current user getter
+   */
   public getUsername() : string {
     let username = localStorage.getItem(this.KW_username);
     return (username !== null) ? username : null;
   }
+  /**
+   * Current username setter, may be useless
+   * @param username 
+   */
   private setUsername(username) {
     localStorage.setItem(this.KW_username, username);
   }
+  /**
+   * Current email getter
+   */
   public getEmail() : string {
     let email = localStorage.getItem(this.KW_email);
     return (email !== null) ? email : null;
   }
+  /**
+   * Current email setter, may be useless
+   * @param email 
+   */
   private setEmail(email) {
     localStorage.setItem(this.KW_email, email);
   }
+  /**
+   * Get the token, might be useless
+   */
   public getToken() : string {
     let token = localStorage.getItem(this.KW_token);
     return (token !== null) ? token : null;
   }
+  /**
+   * Set the token, might be useless
+   * @param token 
+   */
   public setToken(token) {
     localStorage.setItem(this.KW_token, token);
   }
+  /**
+   * True if a user is connected
+   */
   public isConnected() : boolean {
     return (localStorage.getItem(this.KW_token) !== null);
   }
