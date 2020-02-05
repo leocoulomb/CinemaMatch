@@ -10,6 +10,7 @@ import { MoviesService } from '../movies.service';
 })
 export class FilmMatchComponent implements OnInit {
 
+  // Default films use for the user profile configuration
   public templates : string[] = [
     "5dcfb536fb30a6da7a682658", // Titanic (Drama Romance)
     "5dcfb540fb30a6da7a6831e6", // Avatar (Sci-Fi)

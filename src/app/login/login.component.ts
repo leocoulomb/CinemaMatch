@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
+  /**
+   * Generate form information
+   */
   createForm() {
     this.angForm = this.fb.group({
       email: ['', Validators.required],
@@ -24,11 +27,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Load required scripts
     this.loadScript('../assets/js/login.js');
     this.loadScript('../assets/js/anime.js');
+    // Ensure user is disconnect
     this.session.disconnect();
   }
 
+  /**
+   * Check connection information (local only)
+   */
   verifConnection() {
     this.session.connect(this.angForm.value.email, this.angForm.value.password)
       .then((response) => {
