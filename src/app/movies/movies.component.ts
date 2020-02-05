@@ -28,8 +28,8 @@ export class MoviesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private session: SessionService, private router: Router, private moviesService: MoviesService) {
     route.params.subscribe(val => {
       this.route.snapshot.paramMap.get('gender') == 'all' ? this.gender = null : this.gender = this.route.snapshot.paramMap.get('gender')
-      this.loadMovie(15, this.gender);
-
+      this.loadMovie(150, this.gender);
+      console.log('hello');
     });
   }
 
@@ -39,10 +39,14 @@ export class MoviesComponent implements OnInit {
 
       })
       .catch((error) => {
-        console.log('try to access home but could not preconnect');
-        console.log(error);
-        this.router.navigateByUrl('/');
+        // console.log('try to access home but could not preconnect');
+        // console.log(error);
+        // this.router.navigateByUrl('/');
       });
+    this.route.params.subscribe(val => {
+      this.route.snapshot.paramMap.get('gender') == 'all' ? this.gender = null : this.gender = this.route.snapshot.paramMap.get('gender')
+      this.loadMovie(150, this.gender);
+    });
     this.range = 5;
 
 

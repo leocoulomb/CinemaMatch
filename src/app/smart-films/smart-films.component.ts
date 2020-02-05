@@ -23,21 +23,10 @@ export class SmartFilmsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.session.preconnect()
-    .then((response) => {
-      
-    })
-    .catch((error) => {
-      console.log('try to access home but could not preconnect');
-      console.log(error);
-      this.router.navigateByUrl('/');  
-    });
 
-    this.moviesService.generateMovieList() // getRandomMovie(50)
+    this.moviesService.generateMovieList() 
     .then((value) => {
-      console.log(value);
       this.movies = this.moviesService.avgRating(value['movies']);
-      console.log(this.movies);
     });
   }
 

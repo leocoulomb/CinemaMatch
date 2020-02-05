@@ -154,6 +154,8 @@ export class MoviesService {
     });
   }
 
+
+  
   public generateMovieList() {
     const header = this.sessionService.buildAuthentificationHeader();
     return new Promise((resolve, reject) => {

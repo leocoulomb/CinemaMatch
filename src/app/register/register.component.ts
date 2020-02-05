@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit {
     this.session.register(this.angForm.value.name, this.angForm.value.email, this.angForm.value.password)
       .then(() => {
         window.location.pathname = '/home';
-        // this.router.navigateByUrl('/home');
       })
       .catch(() => {
         console.log('failed');
