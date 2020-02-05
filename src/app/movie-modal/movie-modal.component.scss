@@ -1,6 +1,6 @@
 
 .modal {
-    z-index: 3;
+    z-index: 20;
     display: block;
     display: inline-block;
     padding-top: 100px;
@@ -212,6 +212,10 @@
 .modal-buttons {
     margin-top: 1.5%;
     display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 56.2%;
+    //width: 401px;
 }
 
 .modal-buttons button:first-child {
