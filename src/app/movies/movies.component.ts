@@ -42,10 +42,14 @@ export class MoviesComponent implements OnInit {
 
   }
 
+
+  //Charge une liste de films
   loadMovie(nb = 15, gender) {
     this.moviesService.getMovies(10, nb, gender).subscribe(value => this.movies = this.moviesService.avgRating(value['movies']));
   }
 
+
+  //Affiche le modal d'un film au click 
   showModal(movie) {
 
     this.isLiked = false;
@@ -62,6 +66,7 @@ export class MoviesComponent implements OnInit {
       })
   }
 
+  //Recherche d'un film en ajax
   searchMovie(query) {
     if (query.length < 4) {
       this.loadMovie(150, null);

@@ -19,6 +19,13 @@ import { SmartFilmsComponent } from './smart-films/smart-films.component';
 import { FilmMatchComponent } from './film-match/film-match.component';
 import { MovieModalComponent } from './movie-modal/movie-modal.component';
 import { ProfilComponent } from './profil/profil.component';
+import { QuizzComponent } from './quizz/quizz.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
+import { MovieMatchComponent } from './movie-match/movie-match.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const appRoutes: Routes = [
   { path: '', component: ReceptionComponent },
@@ -30,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'movies/:gender', component: MoviesComponent },
   { path: 'smart-movies', component: SmartFilmsComponent },
   { path: 'profil', component: ProfilComponent },
+  { path: 'quizz', component: QuizzComponent },
 ];
 
 @NgModule({
@@ -48,6 +56,8 @@ const appRoutes: Routes = [
     FilmMatchComponent,
     MovieModalComponent,
     ProfilComponent,
+    QuizzComponent,
+    MovieMatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +66,16 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
+    CommonModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
   ],
+  exports: [
+    RouterModule,
+    MatTooltipModule,
+    MatDialogModule,
+  ],
+  entryComponents: [QuizzComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

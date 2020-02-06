@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="movie-bg-header">
+    <div class="head">
+        <section class="logo"><b>Q<span>u</span><span>i</span>z<span>z</span></b></section>
+    </div>
+</div>
+<section class="allmovies">
+    <div class="main">
+        <div class="test">
+                <ul class="options">
+                    <li class="active">Affiner vôtre profil ! </li>
+                </ul>
+            <div class="tbg">
+                <div class="tbgwrap">
+                    <!--div (click)='onNoClick()' class='tquit'><i class="far fa-times-circle"></i></div-->
+                    <movie-match [parentSubject]="parentSubject">
+                    </movie-match>
+                    <div class="tcontrols">
+                        <div (click)='onClick("like")' class="tyes"><i class="fa fa-heart" aria-hidden="true"></i></div>
+                        <div (click)='onClick("unseen")' class="tseen"><i class="fa fa-eye-slash fa-2x"
+                                aria-hidden="true"></i>
+                        </div>
+                        <div (click)='onClick("dislike")' class="tno"><i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>
